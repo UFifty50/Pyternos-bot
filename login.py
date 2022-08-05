@@ -12,7 +12,7 @@ open("/app/webdriver", "wb").write(response.content)
 
 ZipFile("webdriver", "r").extractall()
 
-os.chmod("/app/chromedriver", stat.S_IXOTH)
+os.system("chmod a+rx /app/chromedriver")
 
 option = webdriver.ChromeOptions()
 option.add_experimental_option("excludeSwitches", ["enable-automation"])
