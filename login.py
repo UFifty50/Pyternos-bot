@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 import time
 import sys
 import os
@@ -14,11 +15,14 @@ ZipFile("webdriver", "r").extractall()
 
 os.system("chmod a+rx /app/chromedriver")
 
+options = Options()
 option = webdriver.ChromeOptions()
+
+options.headless = True
 option.add_experimental_option("excludeSwitches", ["enable-automation"])
 option.add_experimental_option('useAutomationExtension', False)
 option.add_argument('--disable-blink-features=AutomationControlled')
-option.add_argument('--ignore-certificate-errors')
+options.add_argument('--ignore-certificate-errors')
 driver = webdriver.Chrome(executable_path=r'/app/chromedriver',options=option)
 driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
 driver.get('https://aternos.org/server')
