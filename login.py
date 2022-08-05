@@ -6,14 +6,14 @@ import requests
 
 URL = "https://chromedriver.storage.googleapis.com/104.0.5112.79/chromedriver_linux64.zip"
 response = requests.get(URL)
-open("webdriver", "wb").write(response.content)
+open("/app/webdriver", "wb").write(response.content)
 
 option = webdriver.ChromeOptions()
 option.add_experimental_option("excludeSwitches", ["enable-automation"])
 option.add_experimental_option('useAutomationExtension', False)
 option.add_argument('--disable-blink-features=AutomationControlled')
 option.add_argument('--ignore-certificate-errors')
-driver = webdriver.Chrome(executable_path=r'webdriver',options=option)
+driver = webdriver.Chrome(executable_path=r'/app/webdriver',options=option)
 driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
 driver.get('https://aternos.org/server')
 
