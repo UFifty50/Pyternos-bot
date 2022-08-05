@@ -1,10 +1,11 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 import time
 import sys
 import os
 import stat
 import requests
+
+"""
 from zipfile import ZipFile
 
 URL = "https://chromedriver.storage.googleapis.com/104.0.5112.79/chromedriver_linux64.zip"
@@ -14,16 +15,20 @@ open("/app/webdriver", "wb").write(response.content)
 ZipFile("webdriver", "r").extractall()
 
 os.system("chmod a+rx /app/chromedriver")
+"""
 
-options = Options()
 option = webdriver.ChromeOptions()
 
-options.headless = True
+option.binary_location = os.environ["GOOGLE_CHROME_BIN"]
+option.add_argument("--headless")
+option.add_argument("--disable-dev-shm-usage")
+option.add_argument("--no-sandbox")
 option.add_experimental_option("excludeSwitches", ["enable-automation"])
 option.add_experimental_option('useAutomationExtension', False)
 option.add_argument('--disable-blink-features=AutomationControlled')
-options.add_argument('--ignore-certificate-errors')
-driver = webdriver.Chrome(executable_path=r'/app/chromedriver',options=option)
+option.add_argument('--ignore-certificate-errors')
+
+driver = webdriver.Chrome(executable_path=os.environ["CHROMEDRIVER_PATH"], chrome_options=chrome_options)
 driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
 driver.get('https://aternos.org/server')
 
