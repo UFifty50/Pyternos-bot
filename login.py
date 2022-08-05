@@ -2,11 +2,14 @@ from selenium import webdriver
 import time
 import sys
 import os
+import stat
 import requests
 
 URL = "https://chromedriver.storage.googleapis.com/104.0.5112.79/chromedriver_linux64.zip"
 response = requests.get(URL)
-open("/app/webdriver", "wb").write(response.content)
+open("/app/webdriver", "wb").write(response.content).close()
+os.chmod("/app/webdriver", stat.S_IXOTH)
+
 
 option = webdriver.ChromeOptions()
 option.add_experimental_option("excludeSwitches", ["enable-automation"])
