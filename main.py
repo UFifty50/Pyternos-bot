@@ -7,18 +7,20 @@ intents = discord.Intents.default()
 #intents.message_content = True
 bot = commands.Bot(command_prefix='>', intents=intents)
 
-aternos = Client.from_hashed(os.environ['uname'], os.environ['pswd'])
-
+#aternos = Client.from_hashed(os.environ['uname'], os.environ['pswd'])
+"""
 servs = aternos.list_servers()
 serv = None
 for testserv in servs:
     if serv.address == 'eggggggy.aternos.me':
         serv = testserv
-        
+ """
+       
 @bot.command()
 async def start(ctx):
     await ctx.send('Starting server...')
-    serv.start()
+ #   serv.start()
+    os.system("python login.py")
     await ctx.send('Server `eggggggy.aternos.me` started!')
 
 bot.run(os.environ['token'])
