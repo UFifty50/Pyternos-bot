@@ -28,7 +28,7 @@ option.add_experimental_option('useAutomationExtension', False)
 option.add_argument('--disable-blink-features=AutomationControlled')
 option.add_argument('--ignore-certificate-errors')
 
-driver = webdriver.Chrome(executable_path=os.environ["CHROMEDRIVER_PATH"], chrome_options=chrome_options)
+driver = webdriver.Chrome(executable_path=os.environ["CHROMEDRIVER_PATH"], chrome_options=option)
 driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
 driver.get('https://aternos.org/server')
 
