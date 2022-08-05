@@ -4,6 +4,7 @@ import sys
 import os
 import stat
 import requests
+from selenium.webdriver.common.by import By
 
 """
 from zipfile import ZipFile
@@ -33,37 +34,37 @@ driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () =>
 driver.get('https://aternos.org/server')
 
 # log in
-text_area = driver.find_element_by_id('user')
+text_area = driver.find_element(By.ID, 'user')
 text_area.send_keys(os.environ['uname'])
 time.sleep(3)
-text_area = driver.find_element_by_id('password')
+text_area = driver.find_element(By.ID, 'password')
 text_area.send_keys(os.environ['pswd'])
 time.sleep(3)
-login = driver.find_element_by_xpath('/html/body/div[3]/div/div/div[4]/div[3]/div[4]')
+login = driver.find_element(By.XPATH, '/html/body/div[3]/div/div/div[4]/div[3]/div[4]')
 login.click()
 time.sleep(3)
 driver.get('https://aternos.org/server')
 time.sleep(3)
 
 # accept cookie privacy prompt
-cookieaccept = driver.find_element_by_xpath('/html/body/div[3]/div/div/div/div[3]/div[2]/div[2]')
+cookieaccept = driver.find_element(By.XPATH, '/html/body/div[3]/div/div/div/div[3]/div[2]/div[2]')
 cookieaccept.click()
 
 # select server
-select = driver.find_element_by_xpath('/html/body/div/main/section/div/div[2]/div/div[2]')
+select = driver.find_element(By.XPATH, '/html/body/div/main/section/div/div[2]/div/div[2]')
 select.click()
 
 # wait for the page to load
 time.sleep(5)
 
 # click start button
-start = driver.find_element_by_xpath('/html/body/div[2]/main/section/div[3]/div[4]/div[1]')
+start = driver.find_element(By.XPATH, '/html/body/div[2]/main/section/div[3]/div[4]/div[1]')
 start.click()
 
 time.sleep(5)
 
 # click cancel
-cancel = driver.find_element_by_xpath('/html/body/div[2]/main/div/div/div/main/div/a[2]')
+cancel = driver.find_element(By.XPATH, '/html/body/div[2]/main/div/div/div/main/div/a[2]')
 cancel.click()
 
 time.sleep(3)
