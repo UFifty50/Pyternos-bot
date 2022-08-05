@@ -1,2 +1,2 @@
-pip install python-aternos
+python-aternos
 discord.py
