@@ -27,7 +27,6 @@ async def on_ready():
         print(f'Logged in as {bot.user} (ID: {bot.user.id})')
         print('------')
         await bot.change_presence(activity=discord.Game(name='>help for help'))
-        getServer()
 
 @tasks.loop(seconds=1)
 async def bgTask(ctx: Context, msg: Message):
