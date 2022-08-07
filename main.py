@@ -13,13 +13,12 @@ bot = commands.Bot(command_prefix='>', intents=intents)
 load_dotenv()
 
 aternos = Client.from_credentials(os.getenv('uname'), os.getenv('pswd'))
+servs = aternos.list_servers()
 
-def getServer():
-    servs = aternos.list_servers()
-    serv = None
-    for testserv in servs:
-        if testserv.address == 'eggggggy.aternos.me':
-            serv = testserv
+serv = None
+for testserv in servs:
+    if testserv.address == 'eggggggy.aternos.me':
+        serv = testserv
 
 starting = False
 
@@ -36,8 +35,13 @@ async def bgTask(ctx: Context, msg: Message):
   if serv.status != 'online':
     print(serv.status)
     print(serv.status_num)
+    
     aternos.refresh_servers([serv.servid])
-    getServer()
+    serv = None
+    for testserv in servs:
+        if testserv.address == 'eggggggy.aternos.me':
+            serv = testserv
+            
     global wait
     wait += 1
     await msg.edit(content=msg.content[0:18] + f" `{wait}`")
